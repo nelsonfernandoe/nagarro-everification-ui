@@ -1,0 +1,19 @@
+.action-buttons {
+  padding: 10px 0;
+}
+
+.action-buttons .btn {
+  width: 100px;
+}
+
+.table-row {
+  cursor: pointer;
+}
+.table-row:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.mat-row:hover {
+  background-color: #eee;
+}

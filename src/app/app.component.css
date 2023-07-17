@@ -1,0 +1,29 @@
+.menu-icon {
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+section.body {
+  display: flex;
+}
+
+section.body .contents {
+  flex-grow: 1;
+}
+
+.side-nav-menu {
+  background: #eee;
+}
+
+.side-nav-menu ul{
+  padding: 5px 10px;
+}
+
+.side-nav-menu ul:hover{
+  background: white;
+}
+
+.side-nav-menu a{
+  color: black;
+}

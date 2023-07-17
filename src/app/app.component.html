@@ -1,0 +1,55 @@
+<div>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <button
+      mat-button
+      *ngIf="isLoggedIn"
+      (click)="sidenav=!sidenav"
+      class="menu-button">
+      <i class="material-icons menu-icon">menu</i>
+    </button>
+    <a href="/home" class="navbar-brand" title="Go to home">Echannel Verification</a>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">{{ username }}</li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">LogOut</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="body mat-elevation-z1" *ngIf="isLoggedIn">
+    <div class="side-nav-menu" *ngIf="sidenav">
+      <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu1">
+        <li>
+          <a href="/echannel-verification" data-bs-toggle="collapse" class="nav-link text-truncate">
+            <span>Echannel Verification</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu2">
+        <li>
+          <a href="/echannel-verification-data" class="nav-link text-truncate">
+            <span>Echannel Verification Data</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="contents">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+
+</div>
+
+<div class="container" *ngIf="!isLoggedIn">
+  <router-outlet></router-outlet>
+</div>
