@@ -1,3 +1,8 @@
+nav.home-nave-bar {
+  position: sticky;
+  top: 0;
+}
+
 .menu-icon {
   color: white;
   cursor: pointer;
@@ -16,14 +21,23 @@ section.body .contents {
   background: #eee;
 }
 
-.side-nav-menu ul{
+.side-nav-menu ul {
   padding: 5px 10px;
 }
 
-.side-nav-menu ul:hover{
+.side-nav-menu ul li{
+  width: 100%;
+}
+
+.side-nav-menu ul:hover {
   background: white;
 }
 
-.side-nav-menu a{
+.side-nav-menu a {
   color: black;
+}
+
+.username {
+  color: white;
+  font-size: 1rem;
 }

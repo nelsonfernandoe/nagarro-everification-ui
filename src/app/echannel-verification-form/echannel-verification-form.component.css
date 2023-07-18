@@ -1,0 +1,89 @@
+#everify-form {
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.action-buttons {
+  padding: 10px 0;
+}
+
+.action-buttons .btn {
+  width: 100px;
+  margin-right: 10px;
+}
+
+#everify-form div.form-group{
+  width: 50%;
+  margin-right: 20px;
+}
+
+#everify-form .pdf-viewer {
+  flex-grow: 1;
+}
+
+
+section.input-section {
+  margin: 20px 0;
+  border: 1px solid;
+  padding: 20px;
+}
+
+section.input-section label.section-label {
+  display: block;
+  font-weight: 600;
+}
+
+div.input-fields {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+span.input {
+  margin-right: 10px;
+}
+
+span.input input{
+  padding: 5px 10px;
+}
+
+section.info span.input.text-area {
+  display: block;
+  width: 100%;
+}
+
+section.info .text-area label.input-label {
+  display: block;
+}
+
+section.info span.input.text-area textarea {
+  width: 100%;
+  padding: 5px 10px;
+}
+
+label.input-label {
+  margin-right: 20px;
+  min-width: 100px;
+}
+
+span.input.acc-name {
+  flex-grow: 1;
+}
+
+input.acc-name-field {
+  width: 70%;
+}
+
+span.input.error textarea {
+  border: solid red 3px;
+}
+
+span.input.error input{
+  border: solid red 3px;
+}
+
+span.input.error select{
+  border: solid red 3px;
+}
+

@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "./app-routing.module";
 import {httpInterceptorProviders} from "./shared/_helpers/http.interceptor";
@@ -28,14 +28,15 @@ import { EchannelVerificationFormComponent } from './echannel-verification-form/
     EchannelVerificationDataComponent,
     EchannelVerificationFormComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MaterialModule,
-    AppRoutingModule,
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MaterialModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+    ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

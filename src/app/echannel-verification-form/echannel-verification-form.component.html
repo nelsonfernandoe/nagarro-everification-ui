@@ -1,1 +1,135 @@
-<p>echannel-verification-form works!</p>
+<section id="everify-form" *ngIf="!loading;else loader">
+  <div [formGroup]="form" class="form-group">
+    <div class="action-buttons">
+      <button mat-button
+              class="btn mat-elevation-z2"
+              (click)="saveEventSource('Proceed')"
+              [disabled]="form.invalid">Proceed
+      </button>
+      <button mat-button
+              class="btn mat-elevation-z2"
+              (click)="saveEventSource('Reject')"
+              [disabled]="form.invalid">Reject
+      </button>
+    </div>
+    <section class="input-section">
+      <label class="section-label">Document</label>
+      <div class="input-fields">
+      <span class="input">
+        <label class="input-label">Reference</label>
+        <input formControlName="businessKey"/>
+      </span>
+      </div>
+    </section>
+
+    <section class="input-section">
+      <label class="section-label">Transfer Details</label>
+      <div class="input-fields">
+      <span class="input">
+        <label class="input-label">Currency</label>
+        <input formControlName="transactionCurrency"/>
+      </span>
+        <span class="input">
+        <label class="input-label">Amount</label>
+        <input formControlName="transactionAmount"/>
+      </span>
+      </div>
+    </section>
+
+    <section class="input-section">
+      <label class="section-label">Debit Account Details</label>
+      <div class="input-fields">
+
+      <span class="input">
+        <label class="input-label">Account No.</label>
+        <input formControlName="debitAccountNumber"/>
+      </span>
+
+        <span class="input">
+        <label class="input-label">Currency</label>
+        <input formControlName="accountCurrency"/>
+      </span>
+      </div>
+      <div class="input-fields acc-name-div">
+        <span class="input acc-name">
+        <label class="input-label">Name</label>
+        <input formControlName="accountName" class="acc-name-field"/>
+      </span>
+      </div>
+    </section>
+
+
+    <section class="input-section">
+      <label class="section-label">Beneficiary Details</label>
+      <div class="input-fields">
+        <span class="input">
+          <label class="input-label">Name</label>
+          <input formControlName="beneficiaryName"/>
+        </span>
+      </div>
+    </section>
+
+    <section class="input-section info">
+      <label class="section-label">Informative Markers</label>
+      <div class="input-fields">
+        <span class="input text-area">
+          <label class="input-label">Customer Informative marker description</label>
+          <textarea formControlName="custInfoMkr"></textarea>
+        </span>
+        <span class="input text-area">
+          <label class="input-label">Account Informative marker description</label>
+          <textarea formControlName="accountInfoMkr"></textarea>
+        </span>
+      </div>
+    </section>
+
+    <section class="input-section info">
+      <label class="section-label">Call back info</label>
+      <div class="input-fields">
+        <span class="input acc-name" [ngClass]="{'error' : checkMandatory('outcome')}">
+          <label class="input-label">Outcome</label>
+          <select formControlName="outcome" class="acc-name-field">
+            <option>Successful</option>
+            <option>Cannot Reach Customer (On Hold)</option>
+            <option>Cannot Reach Customer (Discrepancy)</option>
+            <option>Reject</option>
+          </select>
+        </span>
+      </div>
+      <div class="input-fields">
+        <span class="input" [ngClass]="{'error' : checkMandatory('extension')}">
+          <label class="input-label">Extension</label>
+          <input formControlName="extension"/>
+        </span>
+
+        <span class="input" [ngClass]="{'error' : checkMandatory('contactPerson')}">
+          <label class="input-label">Contact person</label>
+          <input formControlName="contactPerson"/>
+        </span>
+      </div>
+
+      <div class="input-fields">
+      <span class="input" [ngClass]="{'error' : checkMandatory('customerCalledOn')}">
+        <label class="input-label">Customer called on</label>
+        <input formControlName="customerCalledOn" placeholder="yyyy-mm-dd"/>
+      </span>
+      </div>
+
+      <div class="input-fields">
+        <span class="input text-area" [ngClass]="{'error' : checkMandatory('comment')}">
+          <label class="input-label">Comment</label>
+          <textarea formControlName="comment"></textarea>
+        </span>
+      </div>
+    </section>
+
+  </div>
+  <!-- <div class="pdf-viewer">
+     <embed src="/assets/EchannelVerification.pdf"
+            style="width: 100%;height: 100%"
+            type="application/pdf">
+   </div>-->
+</section>
+<ng-template #loader>
+  <mat-spinner mode="indeterminate"></mat-spinner>
+</ng-template>

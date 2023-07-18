@@ -1,7 +1,8 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "./shared/_services/auth.service";
 import {StorageService} from "./shared/_services/storage.service";
-import {MatSidenav} from "@angular/material/sidenav";
+import {GlobalService} from "./shared/_services/global.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,11 @@ import {MatSidenav} from "@angular/material/sidenav";
 export class AppComponent {
   isLoggedIn = false;
   username?: string;
-  sidenav: boolean = true;
 
-  constructor(private storageService: StorageService, private authService: AuthService) {
+  constructor(private readonly storageService: StorageService,
+              readonly globalService: GlobalService,
+              private readonly router: Router,
+              private readonly authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -26,16 +29,18 @@ export class AppComponent {
   }
 
   logout(): void {
-    this.authService.logout().subscribe({
-      next: res => {
-        console.log(res);
-        this.storageService.clean();
-        window.location.reload();
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
+    this.authService.logout()
+      .subscribe({
+        next: res => {
+          console.log(res);
+          this.storageService.clean();
+          // this.router.navigateByUrl('/login');
+          this.router.navigate(['login']);
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
 
   }
 

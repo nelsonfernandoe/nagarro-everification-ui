@@ -1,9 +1,9 @@
 <div>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
+  <nav class="navbar navbar-expand navbar-dark bg-dark home-nave-bar">
     <button
       mat-button
       *ngIf="isLoggedIn"
-      (click)="sidenav=!sidenav"
+      (click)="globalService.toggleSideNav()"
       class="menu-button">
       <i class="material-icons menu-icon">menu</i>
     </button>
@@ -19,15 +19,15 @@
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">{{ username }}</li>
+      <li class="nav-item username">Hi {{ username }}!</li>
       <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
+        <a href class="nav-link" (click)="logout()">Log Out</a>
       </li>
     </ul>
   </nav>
 
   <section class="body mat-elevation-z1" *ngIf="isLoggedIn">
-    <div class="side-nav-menu" *ngIf="sidenav">
+    <div class="side-nav-menu" *ngIf="globalService.showSideNavFlag">
       <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu1">
         <li>
           <a href="/echannel-verification" data-bs-toggle="collapse" class="nav-link text-truncate">
