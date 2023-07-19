@@ -10,8 +10,8 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   form: any = {
-    username: 'Bob',
-    password: 'temp123'
+    username: null,
+    password: null
   };
   isLoggedIn = false;
   isLoginFailed = false;
