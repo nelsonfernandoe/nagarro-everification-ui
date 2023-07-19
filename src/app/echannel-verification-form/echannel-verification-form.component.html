@@ -1,6 +1,6 @@
 <section id="everify-form" *ngIf="!loading;else loader">
   <div [formGroup]="form" class="form-group">
-    <div class="action-buttons">
+    <div class="action-buttons" *ngIf="!readOnly">
       <button mat-button
               class="btn mat-elevation-z2"
               (click)="saveEventSource('Proceed')"
@@ -124,11 +124,11 @@
     </section>
 
   </div>
-   <div class="pdf-viewer">
-     <embed src="/assets/EchannelVerification.pdf"
-            style="width: 100%;height: 100%"
-            type="application/pdf">
-   </div>
+  <div class="pdf-viewer">
+    <embed src="/assets/EchannelVerification.pdf"
+           style="width: 100%;height: 100%"
+           type="application/pdf">
+  </div>
 </section>
 <ng-template #loader>
   <mat-spinner mode="indeterminate"></mat-spinner>

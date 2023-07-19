@@ -5,8 +5,16 @@
   <ng-template #table>
 
     <div class="action-buttons">
-      <button mat-button class="btn" [disabled]="isOpenAllowed">Open</button>
-      <button mat-button class="btn" [disabled]="isViewOnlyAllowed">View Only</button>
+      <button mat-button class="btn"
+              (click)="onOpenAction()"
+              [disabled]="isOpenAllowed">Open</button>
+      <button mat-button class="btn"
+              (click)="onViewOnlyAction()"
+              [disabled]="isViewOnlyAllowed">View Only</button>
+    </div>
+    <div class="notification" *ngIf="showNotification">
+      <span class="success" *ngIf="successNotification">{{successNotification}}</span>
+      <span class="failure" *ngIf="failedNotification">{{failedNotification}}</span>
     </div>
     <table mat-table
            [dataSource]="dataSource"
@@ -33,9 +41,9 @@
           *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <!-- Angular 8 pagination -->
-    <mat-paginator [length]="dataSource.data.length"
+    <!--<mat-paginator [length]="dataSource.data.length"
                    [pageSize]="5"
-                   [pageSizeOptions]="[1, 10, 15, 20]" showFirstLastButtons></mat-paginator>
+                   [pageSizeOptions]="[1, 10, 15, 20]" showFirstLastButtons></mat-paginator>-->
   </ng-template>
 
 </div>

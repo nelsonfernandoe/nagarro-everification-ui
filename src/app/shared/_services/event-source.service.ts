@@ -38,6 +38,13 @@ export class EventSourceService {
     );
   }
 
+  assignToMyself(id: number): Observable<EventSource | any> {
+    return this.http.patch(
+      EVENT_SOURCE_API + `${id}/assign`,
+      httpOptions
+    );
+  }
+
   updateEventSource(update: Partial<EventSource>): Observable<EventSource | any> {
     return this.http.patch(
       EVENT_SOURCE_API,

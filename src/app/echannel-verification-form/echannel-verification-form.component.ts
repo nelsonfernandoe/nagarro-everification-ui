@@ -17,6 +17,7 @@ export class EchannelVerificationFormComponent implements OnInit, OnDestroy {
   formData: EventSource;
   loading = false;
   subs = new Subscription();
+  readOnly: boolean;
 
   constructor(private readonly fb: FormBuilder,
               private readonly router: Router,
@@ -30,10 +31,19 @@ export class EchannelVerificationFormComponent implements OnInit, OnDestroy {
     this.globalService.hideSideNav();
 
     this.initializeForm();
+
+    this.subs.add(
+      this.route.queryParams.subscribe(qp => {
+        this.readOnly = qp['viewOnly'];
+        if (this.readOnly) {
+          this.markInputsDisabled();
+        }
+      })
+    );
     this.subs.add(
       this.route.params.pipe(
-        switchMap(param => {
-          return this.eventSourceService.getEventSourceById(param['id'])
+        switchMap(params => {
+          return this.eventSourceService.getEventSourceById(params['id']);
         })
       ).subscribe((res: any) => {
         console.log({res});
@@ -90,5 +100,13 @@ export class EchannelVerificationFormComponent implements OnInit, OnDestroy {
       });
 
     console.log(this.formData);
+  }
+
+  private markInputsDisabled() {
+    this.form.controls['outcome'].disable({emitEvent: true});
+    this.form.controls['extension'].disable();
+    this.form.controls['contactPerson'].disable();
+    this.form.controls['customerCalledOn'].disable();
+    this.form.controls['comment'].disable();
   }
 }

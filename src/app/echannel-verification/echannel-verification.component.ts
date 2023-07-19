@@ -40,16 +40,18 @@ export class EchannelVerificationComponent implements OnInit, AfterViewInit {
   };
 
   dataSource = new MatTableDataSource<Everification>([]);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ViewChild(MatSort) sort: MatSort;
   selection = new SelectionModel<any>(true, []);
   isOpenAllowed = true;
   isViewOnlyAllowed = true;
-
+  showNotification = false;
+  successNotification: string;
+  failedNotification: string;
 
   constructor(private readonly eventSourceService: EventSourceService,
               private readonly router: Router) {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
   }
 
@@ -67,7 +69,7 @@ export class EchannelVerificationComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
   }
 
   selectHandler(row: any) {
@@ -86,5 +88,42 @@ export class EchannelVerificationComponent implements OnInit, AfterViewInit {
   onRowSelect(row: any) {
     console.log('Row clicked: ', row);
     this.router.navigateByUrl(`/echannel-verification/${row.id}`);
+  }
+
+  onOpenAction() {
+    const selectedRow = this.selection.selected[0];
+    const id = selectedRow['id'];
+    this.loading = true;
+    this.eventSourceService.assignToMyself(id)
+      .subscribe(res => {
+        console.log({res});
+        this.showInlineNotification('Successfully assigned the request to yourself!',
+          true, 2000);
+        this.loading = false;
+      }, err => {
+        console.error('Error occurred while loading es data');
+        this.showInlineNotification('Failed to assign the request to yourself! Please Try again later.',
+          false, 2000);
+        this.loading = false;
+      });
+  }
+
+  private showInlineNotification(msg: string, success: boolean, duration: number) {
+    this.showNotification = true;
+    this.successNotification = '';
+    this.failedNotification = '';
+    if (success) {
+      this.successNotification = msg;
+    } else {
+      this.failedNotification = msg;
+    }
+
+    setTimeout(() => this.showNotification = false, duration);
+  }
+
+  onViewOnlyAction() {
+    this.selection.selected.forEach(s => {
+      window.open(`echannel-verification/${s['id']}?viewOnly=true`);
+    });
   }
 }

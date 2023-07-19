@@ -34,8 +34,7 @@ export class AppComponent {
         next: res => {
           console.log(res);
           this.storageService.clean();
-          // this.router.navigateByUrl('/login');
-          this.router.navigate(['login']);
+          // this.router.navigate(['login']);
         },
         error: err => {
           console.log(err);

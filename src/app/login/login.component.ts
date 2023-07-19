@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/_services/auth.service';
 import {StorageService} from '../shared/_services/storage.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -9,14 +10,16 @@ import {StorageService} from '../shared/_services/storage.service';
 })
 export class LoginComponent implements OnInit {
   form: any = {
-    username: null,
-    password: null
+    username: 'Bob',
+    password: 'temp123'
   };
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private storageService: StorageService) {
+  constructor(private readonly authService: AuthService,
+              private readonly router: Router,
+              private readonly storageService: StorageService) {
   }
 
   ngOnInit(): void {
@@ -31,7 +34,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(username, password).subscribe({
       next: data => {
         this.storageService.saveUser(data);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.reloadPage();

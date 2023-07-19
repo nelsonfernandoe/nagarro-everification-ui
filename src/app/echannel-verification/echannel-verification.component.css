@@ -23,3 +23,14 @@
   width: 50%;
   padding: 10px;
 }
+
+.notification {
+  padding: 2px 29px;
+  margin-bottom: 20px;
+  color: green;
+}
+
+.notification .failure {
+  color: red;
+}
+
