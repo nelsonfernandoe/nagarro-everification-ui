@@ -75,9 +75,27 @@ export class EchannelVerificationComponent implements OnInit, AfterViewInit {
   selectHandler(row: any) {
     console.log('Row selected: ', row);
     this.selection.toggle(row);
+    this.checkAndEnableActions();
+  }
+
+  private checkAndEnableActions() {
     let selectedRowsCount = this.selection.selected.length;
     this.isOpenAllowed = !(selectedRowsCount === 1);
     this.isViewOnlyAllowed = !(selectedRowsCount > 0);
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+    this.checkAndEnableActions();
   }
 
   getColumnName(el: string) {
