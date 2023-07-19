@@ -29,7 +29,12 @@ export class AppComponent {
   }
 
   logout(): void {
-    this.authService.logout()
+    /* temp fix for log out */
+    this.storageService.clean();
+    this.router.navigate(['login']);
+
+    /* actual code */
+    /*this.authService.logout()
       .subscribe({
         next: res => {
           console.log(res);
@@ -39,7 +44,7 @@ export class AppComponent {
         error: err => {
           console.log(err);
         }
-      });
+      });*/
 
   }
 
