@@ -71,12 +71,13 @@
       </div>
 
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
+        Signup failed!<br/>{{ errorMessage }}
       </div>
     </form>
 
     <div class="alert alert-success" *ngIf="isSuccessful">
       Your registration is successful!
+      <a href="/login">Login</a>
     </div>
   </div>
 </div>

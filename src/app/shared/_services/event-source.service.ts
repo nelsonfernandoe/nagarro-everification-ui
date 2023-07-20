@@ -24,7 +24,7 @@ export class EventSourceService {
     );
   }
 
-  getEventSourceCountByStatus(): Observable<EverificationResponse | any> {
+  getEventSourceCountByStatus(): Observable<any> {
     return this.http.get(
       EVENT_SOURCE_API + 'statusCount',
       httpOptions

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/_services/auth.service';
 import {StorageService} from '../shared/_services/storage.service';
 import {Router} from "@angular/router";
+import {GlobalService} from "../shared/_services/global.service";
 
 @Component({
   selector: 'app-login',
@@ -19,11 +20,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private readonly authService: AuthService,
               private readonly router: Router,
+              private readonly globalService: GlobalService,
               private readonly storageService: StorageService) {
   }
 
   ngOnInit(): void {
-    throw new Error('test geh')
+    this.globalService.setShowSignUpFlag(true);
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
     }
