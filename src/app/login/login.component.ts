@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    throw new Error('test geh')
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
     }
